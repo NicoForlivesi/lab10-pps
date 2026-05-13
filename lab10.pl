@@ -106,8 +106,13 @@ seq(s(N), E, cons(E, T)) :- seq(N, E, T).
 
 % Ex4.2: seqR(N, List)
 % Example: seqR(s(s(s(zero))), cons(s(s(zero)),cons(s(zero),cons(zero,nil)))).
-
+seqR(zero, nil).
+seqR(s(N), cons(N, T)) :- seqR(N, T).
 
 % Ex4.3: seqR2(N, List) --> is cons(0, cons(1, cons(..., cons(N-1, nil))))
 % Example: seqR2(s(s(s(zero))), cons(zero,cons(s(zero),cons(s(s(zero)),nil))))
+seqR2(s(zero), cons(zero, nil)).
+seqR2(s(N), L) :- seqR2(N, W), last(W, N, L).
+last(nil, E, cons(E, nil)).
+last(cons(H, T), E, cons(H, T2)) :- last(T, E, T2).
 
